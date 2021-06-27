@@ -1,5 +1,4 @@
 use crate::schema::products;
-use diesel::{RunQueryDsl, QueryDsl};
 
 #[derive(Queryable, Serialize, Deserialize)]
 pub struct Product {
@@ -61,7 +60,7 @@ pub struct NewProduct {
 
 impl NewProduct {
   pub fn create(&self) -> Result<Product, diesel::result::Error> {
-    use diesel::RunQueryDsl;;
+    use diesel::RunQueryDsl;
     use crate::db_connection::establish_connection;
 
     let connection = establish_connection();

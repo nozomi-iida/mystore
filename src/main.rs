@@ -17,11 +17,7 @@ extern crate serde_derive;
 extern crate actix_web;
 extern crate actix;
 
-use actix_web::{HttpServer, App, web, HttpRequest, HttpResponse};
-
-fn index(_req: HttpRequest) -> HttpResponse {
-  HttpResponse::Ok().json("Hello world!")
-}
+use actix_web::{HttpServer, App, web};
 
 fn main () {
   let sys = actix::System::new("mystore");
