@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    command: /bin/sh -c "cargo watch -x run"
+    volumes:
+    - ./:/app
+    ports:
+    - 8000:8000
+    depends_on:
+      - db
+    tty: true
+
+  db:
+    restart: always
+    image: postgres:11
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_USER: deploy
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./tmp/db/data:/var/lib/postgresql/data
