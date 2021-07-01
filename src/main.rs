@@ -18,11 +18,13 @@ extern crate actix_web;
 extern crate actix;
 
 use actix_web::{HttpServer, App, web};
+use crate::db_connection::establish_connection;
 
 fn main () {
   let sys = actix::System::new("mystore");
 
   HttpServer::new(|| App::new()
+    .data(establish_connection())
     .service(
     // エンドポイントを定義
     web::resource("/products")
